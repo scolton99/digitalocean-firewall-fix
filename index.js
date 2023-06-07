@@ -15,6 +15,8 @@ const main = async () => {
     return;
   }
 
+  console.log(DIGITALOCEAN_API_KEY);
+
   const firewallRes = await fetch('https://api.digitalocean.com/v2/firewalls', {
     headers: {
       'Authorization': `Bearer ${DIGITALOCEAN_API_KEY}`

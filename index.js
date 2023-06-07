@@ -15,15 +15,6 @@ const main = async () => {
     return;
   }
 
-  await fetch('https://ci.sdc.sx/app/rest/buildTypes/Local_DigitalOceanFirewallFix_Main/parameters/env.LAST_IP', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'text/plain',
-      'Authorization': `Bearer ${TC_API_KEY}`
-    },
-    body: newIp
-  });
-
   const firewallRes = await fetch('https://api.digitalocean.com/v2/firewalls', {
     headers: {
       'Authorization': `Bearer ${DIGITALOCEAN_API_KEY}`
@@ -68,6 +59,15 @@ const main = async () => {
       console.log(`Updated ${firewall.name}.`);
     }
   }
+
+  await fetch('https://ci.sdc.sx/app/rest/buildTypes/Local_DigitalOceanFirewallFix_Main/parameters/env.LAST_IP', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'text/plain',
+      'Authorization': `Bearer ${TC_API_KEY}`
+    },
+    body: newIp
+  });
 };
 
 main();

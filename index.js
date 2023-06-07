@@ -22,6 +22,11 @@ const main = async () => {
     method: 'GET'
   });
 
+  if (!firewallRes.ok) {
+    console.log(await firewallRes.text());
+    process.exit(1);
+  }
+
   const { firewalls } = await firewallRes.json();
 
   for (const firewall of firewalls) {
